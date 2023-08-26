@@ -1,0 +1,12 @@
+{
+  "indent_size": 2,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
+}
+

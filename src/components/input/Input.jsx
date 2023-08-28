@@ -43,8 +43,18 @@ const Input = ({
 
   return (
     <div className={classNames(styles.formControl, className)}>
-      <label>{label}</label>
-      <div>
+      <label
+        className={classNames(styles.label, labelVisible || styles.labelHidden)}
+        htmlFor={id}
+      >
+        {label}
+      </label>
+      <div
+        className={classNames(
+          styles.inputWrapper,
+          errorProp && styles.inputWrapperError
+        )}
+      >
         {icon ? <Icon type={icon} /> : null}
         <input
           id={id}

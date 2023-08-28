@@ -41,6 +41,7 @@ const LoginClient = () => {
               icon="letter"
               id="email"
               label="이메일"
+              labelVisible
               placeholder="아이디(이메일)"
               className={styles.control}
               value={email}
@@ -51,6 +52,7 @@ const LoginClient = () => {
               icon="lock"
               id="password"
               label="비밀번호"
+              labelVisible
               placeholder="비밀번호"
               className={styles.control}
               value={password}

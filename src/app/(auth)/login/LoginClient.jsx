@@ -5,14 +5,18 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import LogoPath from "@/assets/colorful.svg";
 import styles from "./Auth.module.scss";
-import Loader from "../../../components/loader/Loader";
-import Input from "../../../components/input/Input";
+import Loader from "@/components/loader/Loader.jsx";
+import Input from "@/components/input/Input.jsx";
+import AutoSignInCheckbox from "@/components/autoSignInCheckbox/AutoSignInCheckbox.jsx";
+import Divider from "@/components/divider/Divider.jsx";
+import Button from "@/components/button/Button.jsx";
+import Link from "next/link";
 
 const LoginClient = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthLoading, setIsAuthLoading] = useState(false);
+  const [isAutoLogin, setIsAutoLogin] = useState(false);
 
   const router = useRouter();
 
@@ -58,10 +62,24 @@ const LoginClient = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className={styles.group}>자동 로그인</div>
+            <div className={styles.group}>
+              <AutoSignInCheckbox
+                checked={isAutoLogin}
+                onChange={(e) => setIsAutoLogin(e.target.checked)}
+              />
+            </div>
             <div className={styles.buttonGroup}>
-              Button
-              <div>Button</div>
+              <Button type="submit" width="100%">
+                로그인
+              </Button>
+              <Divider />
+              <Button width="100%" secondary>
+                <Link href={"/register"}>회원가입</Link>
+              </Button>
+              <Divider />
+              <div>
+                <Button onClick={signInWithGoogle}>구글 로그인</Button>
+              </div>
             </div>
           </form>
         </div>

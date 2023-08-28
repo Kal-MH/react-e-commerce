@@ -1,16 +1,26 @@
 "use client";
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import LogoPath from "@/assets/colorful.svg";
 import styles from "./Auth.module.scss";
+
 import Loader from "@/components/loader/Loader.jsx";
 import Input from "@/components/input/Input.jsx";
 import AutoSignInCheckbox from "@/components/autoSignInCheckbox/AutoSignInCheckbox.jsx";
 import Divider from "@/components/divider/Divider.jsx";
 import Button from "@/components/button/Button.jsx";
-import Link from "next/link";
+
+import { toast } from "react-toastify";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const LoginClient = () => {
   const [email, setEmail] = useState("");
@@ -26,10 +36,34 @@ const LoginClient = () => {
 
   const loginUser = (e) => {
     e.preventDefault();
+
     setIsLoading(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success("로그인에 성공했습니다.");
+        redirectUser();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
-  const signInWithGoogle = () => {};
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        toast.success("로그인에 성공했습니다.");
+        redirectUser();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   return (
     <>

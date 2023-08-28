@@ -3,14 +3,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 import LogoPath from "@/assets/colorful.svg";
 import styles from "../login/Auth.module.scss";
+
 import Loader from "@/components/loader/Loader.jsx";
 import Input from "@/components/input/Input.jsx";
-import AutoSignInCheckbox from "@/components/autoSignInCheckbox/AutoSignInCheckbox.jsx";
 import Divider from "@/components/divider/Divider.jsx";
 import Button from "@/components/button/Button.jsx";
-import Link from "next/link";
+
+import { toast } from "react-toastify";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const RegisterClient = () => {
   const [email, setEmail] = useState("");
@@ -26,10 +32,28 @@ const RegisterClient = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-  };
 
-  const signInWithGoogle = () => {};
+    if (password !== cPassword) {
+      return toast.error("비밀번호가 일치하지 않습니다.");
+    }
+    setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        console.log(user);
+
+        toast.success("등록 성공...");
+        redirectUser();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -67,7 +91,7 @@ const RegisterClient = () => {
             <Input
               password
               icon="lock"
-              id="password"
+              id="confirm-Password"
               name="password"
               label="비밀번호 확인"
               labelVisible

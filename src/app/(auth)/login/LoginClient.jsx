@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import LogoPath from "@/assets/colorful.svg";
 import styles from "./Auth.module.scss";
 import Loader from "../../../components/loader/Loader";
+import Input from "../../../components/input/Input";
 
 const LoginClient = () => {
   const [email, setEmail] = useState("");
@@ -27,21 +28,43 @@ const LoginClient = () => {
   const signInWithGoogle = () => {};
 
   return (
-    <section className={styles.page}>
-      <div className={styles.container}>
-        <h1 className={styles.logo}>
-          <Image priority alt="logo" src={LogoPath} />
-        </h1>
-        <form className={styles.form}>
-          Input
-          <div className={styles.group}>자동 로그인</div>
-          <div className={styles.buttonGroup}>
-            Button
-            <div>Button</div>
-          </div>
-        </form>
-      </div>
-    </section>
+    <>
+      {isLoading && <Loader />}
+      <section className={styles.page}>
+        <div className={styles.container}>
+          <h1 className={styles.logo}>
+            <Image priority alt="logo" src={LogoPath} />
+          </h1>
+          <form className={styles.form}>
+            <Input
+              email
+              icon="letter"
+              id="email"
+              label="이메일"
+              placeholder="아이디(이메일)"
+              className={styles.control}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              password
+              icon="lock"
+              id="password"
+              label="비밀번호"
+              placeholder="비밀번호"
+              className={styles.control}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className={styles.group}>자동 로그인</div>
+            <div className={styles.buttonGroup}>
+              Button
+              <div>Button</div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 

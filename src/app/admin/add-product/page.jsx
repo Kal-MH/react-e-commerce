@@ -1,7 +1,8 @@
 import React from "react";
+import AddProductClient from "./AddProductClient.jsx";
 
 const AddProduct = () => {
-  return <div>AddProduct</div>;
+  return <AddProductClient />;
 };
 
 export default AddProduct;

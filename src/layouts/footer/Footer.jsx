@@ -67,7 +67,7 @@ const Footer = () => {
       <div className={styles.coupangInformation}>
         {/* <!-- 로고 --> */}
         <figure className={styles.logo}>
-          <Image src={colorLogo} alt="로고1" />
+          <Image priority src={colorLogo} alt="로고1" />
         </figure>
 
         {/* <!-- 고객센터 정보 목록 --> */}

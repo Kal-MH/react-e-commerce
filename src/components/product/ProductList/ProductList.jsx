@@ -35,14 +35,6 @@ const ProductList = () => {
     indexOfLastProduct
   );
 
-  console.log(
-    currentPage,
-    indexOfFirstProduct,
-    indexOfLastProduct,
-    filteredProducts,
-    currentProducts
-  );
-
   const handleRadioClick = (e) => setSort(e.target.value);
   const isRadioSelected = (value) => (sort === value ? "checked" : "");
 

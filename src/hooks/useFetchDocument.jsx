@@ -14,7 +14,7 @@ const useFetchDocument = (collectionName, documentID) => {
 
     if (docSnap.exists()) {
       const obj = {
-        id: doc.id,
+        id: docSnap.id,
         ...docSnap.data(),
       };
 

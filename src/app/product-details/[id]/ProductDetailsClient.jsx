@@ -35,14 +35,14 @@ const ProductDetailsClient = () => {
       userName: "kal",
     },
     {
-      id: "1",
+      id: "2",
       rate: 3,
       review: "wow!",
       reviewDate: new Date(),
       userName: "kal",
     },
     {
-      id: "1",
+      id: "3",
       rate: 3,
       review: "wow!",
       reviewDate: new Date(),

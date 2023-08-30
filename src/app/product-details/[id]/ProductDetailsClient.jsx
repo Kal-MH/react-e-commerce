@@ -14,6 +14,7 @@ import Button from "@/components/button/Button";
 import useFetchDocuments from "@/hooks/useFetchDocuments";
 import { useDispatch } from "react-redux";
 import ProductReviewItem from "@/components/product/ProductReviewItem/ProductReviewItem.jsx";
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY } from "@/redux/slice/cartSlice";
 
 const ProductDetailsClient = () => {
   const { id } = useParams();
@@ -50,12 +51,18 @@ const ProductDetailsClient = () => {
   ];
 
   const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
 
   const today = new Date();
   const tomorrow = new Date(today.setDate(today.getDate() + 1));
 
   const tomorrowDate = tomorrow.getDate();
   const tomorrowMonth = tomorrow.getMonth();
+
+  const addToCart = () => {
+    dispatch(ADD_TO_CART({ ...product, quantity: count }));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  };
 
   return (
     <section className={styles.product}>
@@ -146,11 +153,7 @@ const ProductDetailsClient = () => {
                     +
                   </Button>
 
-                  <Button
-                  //   onClick={() => addToCart()}
-                  >
-                    장바구니 담기
-                  </Button>
+                  <Button onClick={() => addToCart()}>장바구니 담기</Button>
                 </div>
               </div>
             </div>

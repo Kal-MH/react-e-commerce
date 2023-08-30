@@ -14,7 +14,7 @@ import {
 const ProductList = () => {
   const [sort, setSort] = useState("latest");
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(10);
+  const [productPerPage, setProductPerPage] = useState(1);
 
   const filteredProducts = useSelector(selectFilteredProducts);
   const dispatch = useDispatch();
@@ -33,6 +33,14 @@ const ProductList = () => {
   const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
+  );
+
+  console.log(
+    currentPage,
+    indexOfFirstProduct,
+    indexOfLastProduct,
+    filteredProducts,
+    currentProducts
   );
 
   const handleRadioClick = (e) => setSort(e.target.value);
@@ -103,7 +111,12 @@ const ProductList = () => {
           </>
         )}
       </div>
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalProducts={filteredProducts.length}
+        productsPerPage={productPerPage}
+      />
     </div>
   );
 };

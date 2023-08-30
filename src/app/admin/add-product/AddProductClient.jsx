@@ -40,6 +40,8 @@ const AddProductClient = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [product, setProduct] = useState(initialState);
 
+  const router = useRouter();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 

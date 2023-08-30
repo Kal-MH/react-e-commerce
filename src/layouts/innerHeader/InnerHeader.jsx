@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./InnerHeader.module.scss";
 import Link from "next/link";
 
@@ -12,11 +12,26 @@ import Image from "next/image";
 import logo from "@/assets/colorful.svg";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { FILTER_BY_SEARCH } from "@/redux/slice/filterSlice";
+import { selectProducts } from "@/redux/slice/productSlice";
 
 const InnerHeader = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+
+  const products = useSelector(selectProducts);
   const cartTotalQuantity = 10;
+
+  useEffect(() => {
+    dispatch(
+      FILTER_BY_SEARCH({
+        products,
+        search,
+      })
+    );
+  }, [dispatch, products, search]);
 
   const handleClick = () => {
     router.push("/cart");

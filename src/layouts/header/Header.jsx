@@ -36,8 +36,6 @@ const Header = () => {
 
         setDisplayName(uName);
 
-        console.log(user);
-
         //  유저 정보를 리덕스 스토어에 저장하기
         dispatch(
           SET_ACTIVE_USER({

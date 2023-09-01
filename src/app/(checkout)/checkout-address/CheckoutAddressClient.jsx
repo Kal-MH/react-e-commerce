@@ -44,7 +44,7 @@ const CheckoutAddressClient = () => {
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
     dispatch(SAVE_BILLING_ADDRESS(billingAddress));
 
-    // router.push("/checkout");
+    router.push("/checkout");
   };
   return (
     <section className={styles.checkout}>

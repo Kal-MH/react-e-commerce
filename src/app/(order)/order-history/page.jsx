@@ -1,7 +1,8 @@
 import React from "react";
+import OrderHistoryClient from "./OrderHistoryClient.jsx";
 
 const OrderHistory = () => {
-  return <div>OrderHistory</div>;
+  return <OrderHistoryClient />;
 };
 
 export default OrderHistory;

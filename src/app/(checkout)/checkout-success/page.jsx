@@ -21,10 +21,6 @@ const CheckoutSuccess = async ({ searchParams }) => {
     return res.json();
   });
 
-  console.log(payment);
-
-  const provider = payment.card ? payment.card : payment.easyPay;
-
   return (
     <section className={styles.success}>
       <Heading title="결제 성공" />

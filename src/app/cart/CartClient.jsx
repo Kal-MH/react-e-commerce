@@ -118,7 +118,9 @@ const CartClient = () => {
                         <button onClick={() => increaseCart(cart)}>+</button>
                       </div>
                     </td>
-                    <td>{priceFormat(price * cartQuantity)}원</td>
+                    <td>
+                      <span>{priceFormat(price * cartQuantity)}원</span>
+                    </td>
                     <td className={styles.icons}>
                       <FaTrashAlt
                         size={19}
